@@ -1,4 +1,4 @@
-package komo.fraczek;
+package komo.fraczek.servicemodule;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
