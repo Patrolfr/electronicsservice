@@ -19,7 +19,7 @@ public class ValidationError {
 
     private final String errorMessage;
 
-    public static final ValidationError createFromErrors(Errors errors){
+    public static ValidationError createFromErrors(Errors errors){
         ValidationError error = new ValidationError("Validation failed. " + errors.getErrorCount() + " error(s)");
         for (ObjectError objectError : errors.getAllErrors()) {
             error.errors.add(objectError.getDefaultMessage());
