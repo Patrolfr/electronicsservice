@@ -1,7 +1,7 @@
-**/.idea/tasks.xml
+
+*/target/**
 
 .idea/*
-
 # User-specific stuff:
 .idea/workspace.xml
 .idea/tasks.xml

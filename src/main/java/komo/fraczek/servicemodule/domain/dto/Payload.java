@@ -1,4 +1,4 @@
-package komo.fraczek.servicemodule.domain;
+package komo.fraczek.servicemodule.domain.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +10,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 @Getter
 @ToString
-public class EquipmentServiceRequest {
-
+public class Payload {
     @NotBlank(message = "Name should not be empty.")
     private String name;
 

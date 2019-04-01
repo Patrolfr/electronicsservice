@@ -1,5 +1,6 @@
 package komo.fraczek.servicemodule.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -19,5 +20,11 @@ public class Parameter {
     private String key;
 
     private String value;
+
+    public Parameter(String key, String value){
+        this.setKey(key);
+        this.setValue(value);
+    }
+
 
 }
