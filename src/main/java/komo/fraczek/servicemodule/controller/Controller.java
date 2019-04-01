@@ -2,6 +2,7 @@ package komo.fraczek.servicemodule.controller;
 
 
 import komo.fraczek.servicemodule.domain.EquipServiceRequest;
+import komo.fraczek.servicemodule.domain.Equipment;
 import komo.fraczek.servicemodule.domain.dto.Payload;
 import komo.fraczek.servicemodule.domain.dto.ResponseWrapper;
 import komo.fraczek.servicemodule.exception.ValidationError;
@@ -26,13 +27,14 @@ public class Controller {
     private final EquipmentService equipmentService;
 
     @PostMapping(path = "equipmentServiceRequests")
-    private ResponseEntity<?> postmapeq(@RequestBody @Valid Payload equipmentPayload){
+    private ResponseEntity<?> equipmentServiceRequests(@RequestBody @Valid Payload equipmentPayload){
         logger.trace(equipmentPayload.toString());
 //        return new ResponseEntity(equipmentService.registerServiceRequest(equipmentPayload), HttpStatus.CREATED);
-        ResponseWrapper wrapper = new ResponseWrapper();
-        wrapper.map.put("k1","v1");
-        wrapper.map.put("k2","v2");
-        return new ResponseEntity<ResponseWrapper>(wrapper, HttpStatus.CREATED);
+        return new ResponseEntity<Equipment>(equipmentService.registerServiceRequest(equipmentPayload).getEquipment(), HttpStatus.CREATED);
+//        ResponseWrapper wrapper = new ResponseWrapper();
+//        wrapper.map.put("k1","v1");
+//        wrapper.map.put("k2","v2");
+//        return new ResponseEntity<ResponseWrapper>(wrapper, HttpStatus.CREATED);
     }
 
 

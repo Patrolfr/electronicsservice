@@ -1,6 +1,9 @@
 package komo.fraczek.servicemodule.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -22,6 +25,7 @@ public class Equipment {
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonProperty
     private Category category;
 
     @OneToMany(cascade = CascadeType.ALL)
