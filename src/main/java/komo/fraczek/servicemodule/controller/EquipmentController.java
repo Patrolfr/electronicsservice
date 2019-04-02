@@ -17,6 +17,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 
@@ -30,7 +31,7 @@ public class EquipmentController {
     private final EquipmentService equipmentService;
 
     @PostMapping(path = "/")
-    private ResponseEntity<EquipmentWrapper> create(@RequestBody @Valid EquipmentPayload equipmentPayload){
+    private ResponseEntity<EquipmentWrapper> create(@RequestBody @Valid EquipmentPayload equipmentPayload, HttpServletRequest request){
         logger.trace(equipmentPayload.toString());
 
         Equipment equipment = equipmentService.registerEquipment(equipmentPayload);
