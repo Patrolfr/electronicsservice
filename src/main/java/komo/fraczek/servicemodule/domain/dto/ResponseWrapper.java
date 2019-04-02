@@ -2,31 +2,27 @@ package komo.fraczek.servicemodule.domain.dto;
 
 import komo.fraczek.servicemodule.domain.Equipment;
 import komo.fraczek.servicemodule.domain.ServiceStatus;
-import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.Getter;
 
-import javax.persistence.CascadeType;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 
-
+@Getter
 public class ResponseWrapper {
 
-
-    private String ownerPhone;
-
     private String serviceCode;
-
-    private Equipment equipment;
 
     @Enumerated(EnumType.STRING)
     private ServiceStatus serviceStatus;
 
     private LocalDateTime dateTime;
 
-    public HashMap<String,String> parameters = new HashMap<>();
-
+    public static ResponseWrapper wrapEquipServiceRequest(Equipment equipment){
+        ResponseWrapper responsewrapper = new ResponseWrapper();
+        responsewrapper.serviceCode = equipment.getServiceCode();
+        responsewrapper.serviceStatus = equipment.getServiceStatus();
+//        responseWrapperOld.dateTime = equipment.getDateTime();
+        return responsewrapper;
+    }
 }

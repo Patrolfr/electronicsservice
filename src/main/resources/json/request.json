@@ -1,9 +1,16 @@
+
+//POST http://localhost:8080/equipments/
 {
-  "name" : "name",
-  "category" : "category",
+  "name" : "Samsung X412-10",
+  "category" : "tvs",
   "parameters" : {
-    "prop1" : "foo",
-    "prop2" : "bar1",
-    "prop3" : "bar2"},
-  "phone" : "phone_number"
+    "resolution" : "4k",
+    "inches" : "55",
+    "prop1" : "bar",
+    "prop2" : "foo"},
+  "comments": [
+    "comment1"
+  ],
+  "serviceStatus" : "WORKING"
 }
+

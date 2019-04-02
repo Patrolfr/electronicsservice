@@ -1,6 +1,7 @@
 package komo.fraczek.servicemodule.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Setter
 @NoArgsConstructor
+@Getter
 public class Parameter {
 
     @Id
@@ -25,6 +27,5 @@ public class Parameter {
         this.setKey(key);
         this.setValue(value);
     }
-
 
 }

@@ -1,5 +1,7 @@
 delete from equip_service_request where id > 0;
 delete from equipment_parameters;
+delete from comments;
+delete from equipment_old where id > 0;
 delete from equipment where id > 0;
 delete from category where id > 0;
 

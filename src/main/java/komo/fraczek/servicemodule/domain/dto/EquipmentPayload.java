@@ -1,16 +1,20 @@
 package komo.fraczek.servicemodule.domain.dto;
 
+import komo.fraczek.servicemodule.domain.ServiceStatus;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.HashMap;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Getter
 @ToString
-public class Payload {
+public class EquipmentPayload {
     @NotBlank(message = "Name should not be empty.")
     private String name;
 
@@ -19,6 +23,9 @@ public class Payload {
 
     private HashMap<String, String> parameters;
 
-    @NotBlank(message = "Phone should not be empty.")
-    private String phone;
+    private List<String> comments;
+
+//    @NotBlank(message = "serviceStatus should not be empty.")
+    @Enumerated(EnumType.STRING)
+    private ServiceStatus serviceStatus;
 }
