@@ -13,7 +13,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Getter
-@ToString
 public class EquipmentPayload {
     @NotBlank(message = "Name should not be empty.")
     private String name;
@@ -25,7 +24,6 @@ public class EquipmentPayload {
 
     private List<String> comments;
 
-//    @NotBlank(message = "serviceStatus should not be empty.")
     @Enumerated(EnumType.STRING)
     private ServiceStatus serviceStatus;
 }

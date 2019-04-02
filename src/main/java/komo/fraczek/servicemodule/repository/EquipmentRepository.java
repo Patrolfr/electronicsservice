@@ -16,5 +16,4 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 
     boolean existsByServiceCode(String serviceCode);
 
-//    Optional<EquipmentOld> findByName(String name);
 }

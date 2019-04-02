@@ -3,6 +3,7 @@ package komo.fraczek.servicemodule.controller;
 
 import komo.fraczek.servicemodule.domain.Equipment;
 import komo.fraczek.servicemodule.domain.ServiceStatus;
+import komo.fraczek.servicemodule.domain.dto.CommentsPayload;
 import komo.fraczek.servicemodule.domain.dto.EquipmentPayload;
 import komo.fraczek.servicemodule.domain.dto.EquipmentWrapper;
 import komo.fraczek.servicemodule.exception.ValidationError;
@@ -44,11 +45,16 @@ public class EquipmentController {
     }
 
     @PutMapping("/{code}/{serviceStatus}")
-    public ResponseEntity<EquipmentWrapper> retrieve(@PathVariable final String code, @Valid @PathVariable ServiceStatus serviceStatus){
+    public ResponseEntity<EquipmentWrapper> changeStatus(@PathVariable final String code, @Valid @PathVariable ServiceStatus serviceStatus){
         Equipment equipment = equipmentService.changeStatus(code,serviceStatus);
         return new ResponseEntity<>(EquipmentWrapper.wrapEquipment(equipment), HttpStatus.OK);
     }
 
+    @PutMapping(path = "/{code}/comment")
+    public ResponseEntity<EquipmentWrapper> comment(@RequestBody CommentsPayload commentsPayload){
+        Equipment equipment = equipmentService.appendComments(commentsPayload);
+        return new ResponseEntity<>(EquipmentWrapper.wrapEquipment(equipment), HttpStatus.OK);
+    }
 
 
     @ExceptionHandler

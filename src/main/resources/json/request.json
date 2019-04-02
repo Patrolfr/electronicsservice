@@ -1,16 +1,28 @@
+[
 
 //POST http://localhost:8080/equipments/
 {
-  "name" : "Samsung X412-10",
-  "category" : "tvs",
-  "parameters" : {
-    "resolution" : "4k",
-    "inches" : "55",
-    "prop1" : "bar",
-    "prop2" : "foo"},
+  "name": "Samsung X412-10",
+  "category": "tvs",
+  "parameters": {
+    "resolution": "4k",
+    "inches": "55",
+    "prop1": "bar",
+    "prop2": "foo"
+  },
   "comments": [
-    "comment1"
+    "Initial comment"
   ],
-  "serviceStatus" : "WORKING"
+  "serviceStatus": "WORKING"
 }
 
+,
+
+//  POST
+{
+  "serviceCode": "code_in_format",
+  "comments": [
+    "New comment"
+  ]
+}
+]

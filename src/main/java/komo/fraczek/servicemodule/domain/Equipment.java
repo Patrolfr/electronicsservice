@@ -35,20 +35,13 @@ public class Equipment {
     private List<Parameter> parameters;
 
     @ElementCollection
-    @CollectionTable(name="comments", joinColumns=@JoinColumn(name="user_id"))
+    @CollectionTable(name="comments", joinColumns=@JoinColumn(name="equipment_id"))
     @Column(name="comments")
     private List<String> comments;
 
     @Enumerated(EnumType.STRING)
     private ServiceStatus serviceStatus;
 
-    public static Equipment ofNameAndCategoryAndParamsHashMap(String name, Category category, HashMap<String, String> params){
-        Equipment equipmentOld = new Equipment();
-        equipmentOld.category = category;
-        equipmentOld.name = name;
-        equipmentOld.parameters = params.entrySet().stream().map(entry -> new Parameter(entry.getKey(), entry.getValue())).collect(Collectors.toList());
-        return equipmentOld;
-    }
 
     public static Equipment fromPayloadAndCategory(EquipmentPayload payload, Category category){
         Equipment equipment = new Equipment();
@@ -64,4 +57,7 @@ public class Equipment {
         this.serviceStatus=serviceStatus;
     }
 
+    public void addComments(List<String> newComments){
+        comments.addAll(newComments);
+    }
 }
