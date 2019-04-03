@@ -1,13 +1,28 @@
 package komo.fraczek.servicemodule.domain.dto;
 
-import lombok.Setter;
+import komo.fraczek.servicemodule.domain.Equipment;
+import komo.fraczek.servicemodule.domain.ServiceStatus;
+import lombok.Getter;
 
-import java.util.HashMap;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import java.time.LocalDateTime;
 
-
+@Getter
 public class ResponseWrapper {
 
-    @Setter
-    public HashMap<String,String> map = new HashMap<>();
+    private String serviceCode;
 
+    @Enumerated(EnumType.STRING)
+    private ServiceStatus serviceStatus;
+
+    private LocalDateTime dateTime;
+
+    public static ResponseWrapper wrapEquipServiceRequest(Equipment equipment){
+        ResponseWrapper responsewrapper = new ResponseWrapper();
+        responsewrapper.serviceCode = equipment.getServiceCode();
+        responsewrapper.serviceStatus = equipment.getServiceStatus();
+//        responseWrapperOld.dateTime = equipment.getDateTime();
+        return responsewrapper;
+    }
 }

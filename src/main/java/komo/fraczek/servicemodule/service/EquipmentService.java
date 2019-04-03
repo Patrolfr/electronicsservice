@@ -1,13 +1,14 @@
 package komo.fraczek.servicemodule.service;
 
-import komo.fraczek.servicemodule.domain.Category;
-import komo.fraczek.servicemodule.domain.EquipServiceRequest;
-import komo.fraczek.servicemodule.domain.Equipment;
-import komo.fraczek.servicemodule.domain.dto.Payload;
+import komo.fraczek.servicemodule.domain.*;
+import komo.fraczek.servicemodule.domain.dto.CommentsPayload;
+import komo.fraczek.servicemodule.domain.dto.EquipmentPayload;
+import komo.fraczek.servicemodule.exception.CodeNotFoundException;
 import komo.fraczek.servicemodule.repository.CategoryRepository;
-import komo.fraczek.servicemodule.repository.RequestRepository;
+import komo.fraczek.servicemodule.repository.EquipmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.omg.PortableInterceptor.LOCATION_FORWARD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,32 +19,49 @@ public class EquipmentService {
 
     private static final Logger logger = LoggerFactory.getLogger(EquipmentService.class);
 
-    private final RequestRepository requestRepository;
-
     private final CategoryRepository categoryRepository;
 
+    private final EquipmentRepository equipmentRepository;
 
-    public final EquipServiceRequest registerServiceRequest(final Payload equipmentPayload){
-       logger.trace(equipmentPayload.toString());
-       EquipServiceRequest equipServiceRequest = EquipServiceRequest.ofEquipmentAndOwner(unwrapPayload(equipmentPayload), equipmentPayload.getPhone());
-       equipServiceRequest.setServiceCode(getCode());
 
-        logger.trace(equipServiceRequest.toString());
-        logger.trace(equipServiceRequest.getEquipment().toString());
-        EquipServiceRequest equipServiceRequestt = requestRepository.save(equipServiceRequest);
-       logger.trace(equipServiceRequestt.toString());
-        return equipServiceRequestt;
+    public final Equipment registerEquipment(final EquipmentPayload equipmentPayload){
+
+        Equipment equipment = unwrapPayload(equipmentPayload);
+
+        return equipmentRepository.save(equipment);
     }
 
-    private Equipment unwrapPayload(Payload equipmentPayload){
+    public final Equipment fetchByCode(final String code){
+
+        return equipmentRepository.findByServiceCode(code).orElseThrow(() -> new CodeNotFoundException(code));
+    }
+
+    public final Equipment changeStatus(final String code, final ServiceStatus serviceStatus){
+
+        Equipment equipment = fetchByCode(code);
+        equipment.changeStatus(serviceStatus);
+
+        return equipmentRepository.save(equipment);
+    }
+
+    public final Equipment appendComments(final CommentsPayload commentsPayload){
+
+        Equipment equipment = fetchByCode(commentsPayload.getServiceCode());
+        equipment.addComments(commentsPayload.getComments());
+        return equipmentRepository.save(equipment);
+    }
+
+
+
+    private Equipment unwrapPayload(EquipmentPayload equipmentPayload){
         Category category = categoryRepository.findByName(equipmentPayload.getCategory()).orElseThrow(() -> new RuntimeException("Category not found."));
-        logger.trace(category.toString());
-        Equipment equipment = Equipment.ofNameAndCategoryAndParamsHashMap(equipmentPayload.getName(), category, equipmentPayload.getParameters() );
+        Equipment equipment = Equipment.fromPayloadAndCategory(equipmentPayload,category);
+        equipment.setServiceCode(generateNewCode());
         return equipment;
     }
 
-    private   String getCode(){
+    private String generateNewCode(){
         String code = RandomStringUtils.randomAlphabetic(3) + "-" + RandomStringUtils.randomNumeric(3);
-        return  !requestRepository.existsByServiceCode(code) ? code : getCode();
+        return  !equipmentRepository.existsByServiceCode(code) ? code : generateNewCode();
     }
 }

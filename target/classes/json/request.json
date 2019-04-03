@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name" : "name",
   "category" : "category",
@@ -7,3 +8,33 @@
     "prop3" : "bar2"},
   "phone" : "phone_number"
 }
+=======
+[
+
+//POST http://localhost:8080/equipments/
+{
+  "name": "Samsung X412-10",
+  "category": "tvs",
+  "parameters": {
+    "resolution": "4k",
+    "inches": "55",
+    "prop1": "bar",
+    "prop2": "foo"
+  },
+  "comments": [
+    "Initial comment"
+  ],
+  "serviceStatus": "WORKING"
+}
+
+,
+
+//  POST
+{
+  "serviceCode": "code_in_format",
+  "comments": [
+    "New comment"
+  ]
+}
+]
+>>>>>>> b00ecaaa78e5d9a1e9da2370b34434a3c5184569

@@ -1,6 +1,7 @@
 package komo.fraczek.servicemodule.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -19,8 +20,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     private String name;
 
 //    @OneToMany
-//    private List<Equipment> equipments;
+//    private List<EquipmentOld> equipments;
 }
