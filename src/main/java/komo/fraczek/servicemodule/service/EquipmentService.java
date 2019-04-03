@@ -1,6 +1,8 @@
 package komo.fraczek.servicemodule.service;
 
-import komo.fraczek.servicemodule.domain.*;
+import komo.fraczek.servicemodule.domain.Category;
+import komo.fraczek.servicemodule.domain.Equipment;
+import komo.fraczek.servicemodule.domain.ServiceStatus;
 import komo.fraczek.servicemodule.domain.dto.CommentsPayload;
 import komo.fraczek.servicemodule.domain.dto.EquipmentPayload;
 import komo.fraczek.servicemodule.exception.CodeNotFoundException;
@@ -8,7 +10,6 @@ import komo.fraczek.servicemodule.repository.CategoryRepository;
 import komo.fraczek.servicemodule.repository.EquipmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.omg.PortableInterceptor.LOCATION_FORWARD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
