@@ -1,0 +1,9 @@
+{
+  "name" : "name",
+  "category" : "category",
+  "parameters" : {
+    "prop1" : "foo",
+    "prop2" : "bar1",
+    "prop3" : "bar2"},
+  "phone" : "phone_number"
+}

@@ -1,0 +1,14 @@
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/domain/Category.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/controller/Controller.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/ElectronicsServiceApp.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/repository/CategoryRepository.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/service/EquipmentService.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/domain/Parameter.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/domain/ServiceStatus.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/domain/EquipServiceRequest.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/exception/ValidationError.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/domain/dto/ResponseWrapper.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/repository/EquipmentRepository.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/domain/dto/Payload.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/repository/RequestRepository.java
+/home/patrol/Idea_workspace/servicemodule/src/main/java/komo/fraczek/servicemodule/domain/Equipment.java
