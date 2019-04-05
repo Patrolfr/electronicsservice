@@ -5,12 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "categories")
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -23,6 +21,4 @@ public class Category {
     @Getter
     private String name;
 
-//    @OneToMany
-//    private List<EquipmentOld> equipments;
 }

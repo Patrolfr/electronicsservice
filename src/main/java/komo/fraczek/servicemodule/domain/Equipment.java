@@ -5,11 +5,11 @@ import komo.fraczek.servicemodule.domain.dto.EquipmentPayload;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
+@Table(name = "equipments")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,7 +36,7 @@ public class Equipment {
 
     @ElementCollection
     @CollectionTable(name="comments", joinColumns=@JoinColumn(name="equipment_id"))
-    @Column(name="comments")
+//    @Column(name="comments")
     private List<String> comments;
 
     @Enumerated(EnumType.STRING)

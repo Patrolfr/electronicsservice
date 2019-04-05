@@ -36,5 +36,4 @@ public class EquipmentWrapper {
         equipmentWrapper.serviceCode = equipment.getServiceCode();
         return equipmentWrapper;
     }
-
 }

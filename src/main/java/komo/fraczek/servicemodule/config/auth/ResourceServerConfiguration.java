@@ -1,4 +1,4 @@
-package komo.fraczek.servicemodule.auth;
+package komo.fraczek.servicemodule.config.auth;
 
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,13 +26,11 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         return "Admin access";
     }
 
-
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests().antMatchers("/oauth/token", "/oauth/authorize**", "/publictest").permitAll();
 //    			 .anyRequest().authenticated();
-
 //        http.requestMatchers().antMatchers("/privatetest", "/equipments/", "/equipments/{code}", "/equipments/{code}/{serviceStatus}")
 //        http.requestMatchers().antMatchers("/privatetest", "/equipments/", "/equipments/{code}", "/equipments/{code}/*")
 //        http.requestMatchers().antMatchers("/privatetest", "/equipments/", "/equipments/{code}/*")
@@ -45,7 +43,5 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .and().requestMatchers().antMatchers("/admin")
                 .and().authorizeRequests()
                 .antMatchers("/admin").access("hasRole('ADMIN')");
-
-
     }
 }

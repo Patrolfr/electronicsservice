@@ -19,6 +19,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -39,6 +40,21 @@ public class EquipmentController {
         return new ResponseEntity<>(EquipmentWrapper.wrapEquipment(equipment), HttpStatus.CREATED);
     }
 
+    @GetMapping(path = "/")
+    private ResponseEntity<List<EquipmentWrapper>> retrieveAll(){
+        logger.trace("retrieveAll");
+        List<EquipmentWrapper> equipmentWrappers = equipmentService.fetchAllAndWrap();
+        return new ResponseEntity<>(equipmentWrappers, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/{category}")
+    private ResponseEntity<List<EquipmentWrapper>> retrieveByCategory(@PathVariable String category){
+        logger.trace("retrieveAll");
+        List<EquipmentWrapper> equipmentWrappers = equipmentService.fetchAllAndWrap();
+        return new ResponseEntity<>(equipmentWrappers, HttpStatus.OK);
+    }
+
+
     @GetMapping("/{code}")
     public ResponseEntity<EquipmentWrapper> retrieve(@PathVariable final String code){
         Equipment equipment = equipmentService.fetchByCode(code);
@@ -52,11 +68,10 @@ public class EquipmentController {
     }
 
     @PutMapping(path = "/{code}/comment")
-    public ResponseEntity<EquipmentWrapper> comment(@RequestBody CommentsPayload commentsPayload){
-        Equipment equipment = equipmentService.appendComments(commentsPayload);
+    public ResponseEntity<EquipmentWrapper> comment(@PathVariable final String code, @RequestBody CommentsPayload commentsPayload){
+        Equipment equipment = equipmentService.appendComments(code, commentsPayload);
         return new ResponseEntity<>(EquipmentWrapper.wrapEquipment(equipment), HttpStatus.OK);
     }
-
 
     @ExceptionHandler
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
@@ -64,12 +79,10 @@ public class EquipmentController {
         return ValidationError.createFromErrors(exception.getBindingResult());
     }
 
-
     @ExceptionHandler
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public String handleException2(MethodArgumentTypeMismatchException exception) {
         logger.trace(exception.toString());
         return "\n" + exception.getParameter() + "\n" + exception.getName();
-//        return "xd";
     }
 }

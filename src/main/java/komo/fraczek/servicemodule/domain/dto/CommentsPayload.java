@@ -9,8 +9,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommentsPayload {
 
-    private String serviceCode;
-
     private List<String> comments;
 
 }

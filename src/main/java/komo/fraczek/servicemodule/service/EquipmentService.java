@@ -5,6 +5,7 @@ import komo.fraczek.servicemodule.domain.Equipment;
 import komo.fraczek.servicemodule.domain.ServiceStatus;
 import komo.fraczek.servicemodule.domain.dto.CommentsPayload;
 import komo.fraczek.servicemodule.domain.dto.EquipmentPayload;
+import komo.fraczek.servicemodule.domain.dto.EquipmentWrapper;
 import komo.fraczek.servicemodule.exception.CodeNotFoundException;
 import komo.fraczek.servicemodule.repository.CategoryRepository;
 import komo.fraczek.servicemodule.repository.EquipmentRepository;
@@ -13,6 +14,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,12 +28,17 @@ public class EquipmentService {
 
     private final EquipmentRepository equipmentRepository;
 
-
     public final Equipment registerEquipment(final EquipmentPayload equipmentPayload){
 
         Equipment equipment = unwrapPayload(equipmentPayload);
 
         return equipmentRepository.save(equipment);
+    }
+
+    public final List<EquipmentWrapper> fetchAllAndWrap(){
+        List<EquipmentWrapper> equipmentList = equipmentRepository.findAll().stream().map(e -> EquipmentWrapper.wrapEquipment(e)).collect(Collectors.toList());
+
+        return equipmentList;
     }
 
     public final Equipment fetchByCode(final String code){
@@ -45,16 +54,13 @@ public class EquipmentService {
         return equipmentRepository.save(equipment);
     }
 
-    public final Equipment appendComments(final CommentsPayload commentsPayload){
-
-        Equipment equipment = fetchByCode(commentsPayload.getServiceCode());
+    public final Equipment appendComments(final String code, final CommentsPayload commentsPayload) {
+        Equipment equipment = fetchByCode(code);
         equipment.addComments(commentsPayload.getComments());
         return equipmentRepository.save(equipment);
     }
 
-
-
-    private Equipment unwrapPayload(EquipmentPayload equipmentPayload){
+    private Equipment unwrapPayload(final EquipmentPayload equipmentPayload){
         Category category = categoryRepository.findByName(equipmentPayload.getCategory()).orElseThrow(() -> new RuntimeException("Category not found."));
         Equipment equipment = Equipment.fromPayloadAndCategory(equipmentPayload,category);
         equipment.setServiceCode(generateNewCode());

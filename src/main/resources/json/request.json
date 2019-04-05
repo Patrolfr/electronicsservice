@@ -17,14 +17,11 @@
 }
 
 ,
-
-//  POST
-{
-  "serviceCode": "code_in_format",
-  "comments": [
-    "New comment"
-  ]
-}
-
-
+//  POST http://localhost:8080/equipments/fAC-865/comment
+  {
+    "comments": [
+      "New comment",
+      "New comment2"
+    ]
+  }
 ]
