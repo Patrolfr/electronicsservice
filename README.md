@@ -1,5 +1,7 @@
 # Electronics service module
 
+[![Build Status](https://travis-ci.com/Patrolfr/electronicsservice.svg?branch=master)](https://travis-ci.com/Patrolfr/electronicsservice)
+
 ###Task
 Zadanie polega na przygotowaniu modułu serwisowania sprzętu elektronicznego.
 ######Wytyczne:
