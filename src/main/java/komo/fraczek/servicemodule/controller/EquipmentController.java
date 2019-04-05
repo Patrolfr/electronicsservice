@@ -47,10 +47,10 @@ public class EquipmentController {
         return new ResponseEntity<>(equipmentWrappers, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{category}")
+    @GetMapping(path = "/category/{category}")
     private ResponseEntity<List<EquipmentWrapper>> retrieveByCategory(@PathVariable String category){
         logger.trace("retrieveAll");
-        List<EquipmentWrapper> equipmentWrappers = equipmentService.fetchAllAndWrap();
+        List<EquipmentWrapper> equipmentWrappers = equipmentService.fetchByCategoryAndWrap(category);
         return new ResponseEntity<>(equipmentWrappers, HttpStatus.OK);
     }
 

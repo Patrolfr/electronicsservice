@@ -28,6 +28,8 @@ public class EquipmentService {
 
     private final EquipmentRepository equipmentRepository;
 
+
+
     public final Equipment registerEquipment(final EquipmentPayload equipmentPayload){
 
         Equipment equipment = unwrapPayload(equipmentPayload);
@@ -36,11 +38,16 @@ public class EquipmentService {
     }
 
     public final List<EquipmentWrapper> fetchAllAndWrap(){
-        List<EquipmentWrapper> equipmentList = equipmentRepository.findAll().stream().map(e -> EquipmentWrapper.wrapEquipment(e)).collect(Collectors.toList());
+        List<EquipmentWrapper> equipmentList = equipmentRepository.findAll().stream().map(EquipmentWrapper::wrapEquipment).collect(Collectors.toList());
 
         return equipmentList;
     }
 
+    public final List<EquipmentWrapper> fetchByCategoryAndWrap(final String category){
+        List<EquipmentWrapper> equipmentList = equipmentRepository.findAllByCategory_Name(category).stream().map(EquipmentWrapper::wrapEquipment).collect(Collectors.toList());
+
+        return equipmentList;
+    }
     public final Equipment fetchByCode(final String code){
 
         return equipmentRepository.findByServiceCode(code).orElseThrow(() -> new CodeNotFoundException(code));
@@ -59,6 +66,7 @@ public class EquipmentService {
         equipment.addComments(commentsPayload.getComments());
         return equipmentRepository.save(equipment);
     }
+
 
     private Equipment unwrapPayload(final EquipmentPayload equipmentPayload){
         Category category = categoryRepository.findByName(equipmentPayload.getCategory()).orElseThrow(() -> new RuntimeException("Category not found."));

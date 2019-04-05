@@ -36,7 +36,8 @@ public class Equipment {
 
     @ElementCollection
     @CollectionTable(name="comments", joinColumns=@JoinColumn(name="equipment_id"))
-//    @Column(name="comments")
+    @Embedded
+    @Column(name="comments")
     private List<String> comments;
 
     @Enumerated(EnumType.STRING)

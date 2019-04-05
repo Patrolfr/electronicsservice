@@ -29,10 +29,10 @@ public class EquipmentWrapper {
         EquipmentWrapper equipmentWrapper = new EquipmentWrapper();
         equipmentWrapper.name = equipment.getName();
         equipmentWrapper.category = equipment.getCategory().getName();
-//        equipmentOld.getParameters().stream().collect(Collectors.toCollection( Parameter::getKey, Parameter::getValue, (p1, p2) -> p1, HashMap<String,String>::new));
         equipmentWrapper.serviceStatus = equipment.getServiceStatus();
         equipmentWrapper.comments = equipment.getComments();
         equipmentWrapper.parameters = (HashMap<String,String>) equipment.getParameters().stream().collect(Collectors.toMap(Parameter::getKey,Parameter::getValue));
+//        equipmentOld.getParameters().stream().collect(Collectors.toCollection( Parameter::getKey, Parameter::getValue, (p1, p2) -> p1, HashMap<String,String>::new));
         equipmentWrapper.serviceCode = equipment.getServiceCode();
         return equipmentWrapper;
     }
