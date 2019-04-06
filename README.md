@@ -1,6 +1,7 @@
 # Electronics service module
 
 [![Build Status](https://travis-ci.com/Patrolfr/electronicsservice.svg?branch=master)](https://travis-ci.com/Patrolfr/electronicsservice)
+[![Coverage Status](https://coveralls.io/repos/github/Patrolfr/electronicsservice/badge.svg)](https://coveralls.io/github/Patrolfr/electronicsservice)
 
 ### Task
 Zadanie polega na przygotowaniu modułu serwisowania sprzętu elektronicznego.
