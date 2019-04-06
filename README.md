@@ -41,5 +41,7 @@ authorization = bearer {token}
 ```
 #### Continous integration:
 Travis: https://travis-ci.com/Patrolfr/electronicsservice
+#### Coverage:
+Coveralls: https://coveralls.io/github/Patrolfr/electronicsservice
 
 

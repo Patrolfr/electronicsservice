@@ -120,7 +120,7 @@ public class EquipmentServiceTest {
         assertThrows(CodeNotFoundException.class, () -> equipmentService.changeStatus(equipmentFake.getServiceCode(),ServiceStatus.BROKEN));
     }
 
-    //FIXME test failure
+    //FIXME test failure, appendComments rly works..
     @Test
     void when_appendComments_returns_EquipmentWithAppendedComments(){
         Equipment equipmentFake = createEquipmentFake();
