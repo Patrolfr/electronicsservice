@@ -23,7 +23,8 @@ public class Equipment {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JsonProperty
     private Category category;
 

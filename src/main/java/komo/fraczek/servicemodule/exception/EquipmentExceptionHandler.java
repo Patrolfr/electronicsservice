@@ -35,23 +35,15 @@ public class EquipmentExceptionHandler {
 
     @ExceptionHandler
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ValidationError handleException(MethodArgumentNotValidException exception) {
+    public ValidationError handleExceptionMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         return ValidationError.createFromErrors(exception.getBindingResult());
     }
 
-    @ExceptionHandler
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ExceptionResponse> handleException2(MethodArgumentTypeMismatchException exception) {
-        logger.debug(exception.toString());
-        ExceptionResponse exceptionResponse = new ExceptionResponse("Invalid servce status.","Allowed values are: "  + Arrays.asList(ServiceStatus.values()) + ".");
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
-    }
 
-    @ExceptionHandler
+    @ExceptionHandler({MethodArgumentTypeMismatchException.class, HttpMessageNotReadableException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ExceptionResponse> HttpMessageNotReadableException(HttpMessageNotReadableException exception) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse("Invalid servce status.","Allowed values are: " +
-                Arrays.asList(ServiceStatus.values()) + ".");
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    public ExceptionResponse handleExceptionMethodArgumentTypeMismatchException(RuntimeException exception) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse("Invalid servce status.","Allowed values are: "  + Arrays.asList(ServiceStatus.values()) + ".");
+        return exceptionResponse;
     }
 }

@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,6 +36,11 @@ public class EquipmentService {
         Equipment equipment = unwrapPayload(equipmentPayload);
 
         return equipmentRepository.save(equipment);
+    }
+
+    public final void deleteEquipment(final String code){
+        if(!equipmentRepository.existsByServiceCode(code)) throw new CodeNotFoundException(code);
+        equipmentRepository.deleteByServiceCode(code);
     }
 
     public final List<EquipmentWrapper> fetchAllAndWrap(){

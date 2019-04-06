@@ -23,11 +23,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class EquipmentServiceTest {
 
@@ -56,6 +55,13 @@ public class EquipmentServiceTest {
         Equipment equipmentReturned = equipmentService.registerEquipment(equipmentPayloadFake);
 
         assertEquals(equipmentReturned, equipmentFake);
+    }
+
+    @Test
+    void when_deleteEquipment_deletesEquipment(){
+        when(equipmentRepositoryMock.existsByServiceCode("FakeCode")).thenReturn(true);
+        equipmentService.deleteEquipment("FakeCode");
+        verify(equipmentRepositoryMock).deleteByServiceCode("FakeCode");
     }
 
     @Test

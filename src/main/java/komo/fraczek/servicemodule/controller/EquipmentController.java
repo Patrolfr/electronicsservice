@@ -44,13 +44,11 @@ public class EquipmentController {
         return new ResponseEntity<>(equipmentWrappers, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/category/{category}")
-    private ResponseEntity<List<EquipmentWrapper>> retrieveByCategory(@PathVariable String category){
-        logger.trace("retrieveAll");
-        List<EquipmentWrapper> equipmentWrappers = equipmentService.fetchByCategoryAndWrap(category);
-        return new ResponseEntity<>(equipmentWrappers, HttpStatus.OK);
+    @DeleteMapping("/{code}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable final String code){
+        equipmentService.deleteEquipment(code);
     }
-
 
     @GetMapping("/{code}")
     public ResponseEntity<EquipmentWrapper> retrieve(@PathVariable final String code){
@@ -68,5 +66,12 @@ public class EquipmentController {
     public ResponseEntity<EquipmentWrapper> comment(@PathVariable final String code, @RequestBody CommentsPayload commentsPayload){
         Equipment equipment = equipmentService.appendComments(code, commentsPayload);
         return new ResponseEntity<>(EquipmentWrapper.wrapEquipment(equipment), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/category/{category}")
+    private ResponseEntity<List<EquipmentWrapper>> retrieveByCategory(@PathVariable String category){
+        logger.trace("retrieveAll");
+        List<EquipmentWrapper> equipmentWrappers = equipmentService.fetchByCategoryAndWrap(category);
+        return new ResponseEntity<>(equipmentWrappers, HttpStatus.OK);
     }
 }
