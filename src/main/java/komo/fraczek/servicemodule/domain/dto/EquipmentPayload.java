@@ -1,8 +1,7 @@
 package komo.fraczek.servicemodule.domain.dto;
 
 import komo.fraczek.servicemodule.domain.ServiceStatus;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,6 +11,9 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Getter
+@AllArgsConstructor
+@Builder
+@ToString
 public class EquipmentPayload {
     @NotBlank(message = "Name should not be empty.")
     private String name;

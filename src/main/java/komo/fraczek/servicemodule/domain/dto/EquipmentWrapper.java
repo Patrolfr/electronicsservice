@@ -3,6 +3,8 @@ package komo.fraczek.servicemodule.domain.dto;
 import komo.fraczek.servicemodule.domain.Equipment;
 import komo.fraczek.servicemodule.domain.Parameter;
 import komo.fraczek.servicemodule.domain.ServiceStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.util.HashMap;

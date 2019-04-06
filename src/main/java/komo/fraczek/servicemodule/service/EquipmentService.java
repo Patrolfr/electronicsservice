@@ -6,6 +6,7 @@ import komo.fraczek.servicemodule.domain.ServiceStatus;
 import komo.fraczek.servicemodule.domain.dto.CommentsPayload;
 import komo.fraczek.servicemodule.domain.dto.EquipmentPayload;
 import komo.fraczek.servicemodule.domain.dto.EquipmentWrapper;
+import komo.fraczek.servicemodule.exception.CategoryNotFoundException;
 import komo.fraczek.servicemodule.exception.CodeNotFoundException;
 import komo.fraczek.servicemodule.repository.CategoryRepository;
 import komo.fraczek.servicemodule.repository.EquipmentRepository;
@@ -31,7 +32,6 @@ public class EquipmentService {
 
 
     public final Equipment registerEquipment(final EquipmentPayload equipmentPayload){
-
         Equipment equipment = unwrapPayload(equipmentPayload);
 
         return equipmentRepository.save(equipment);
@@ -48,13 +48,12 @@ public class EquipmentService {
 
         return equipmentList;
     }
-    public final Equipment fetchByCode(final String code){
 
+    public final Equipment fetchByCode(final String code){
         return equipmentRepository.findByServiceCode(code).orElseThrow(() -> new CodeNotFoundException(code));
     }
 
     public final Equipment changeStatus(final String code, final ServiceStatus serviceStatus){
-
         Equipment equipment = fetchByCode(code);
         equipment.changeStatus(serviceStatus);
 
@@ -68,8 +67,8 @@ public class EquipmentService {
     }
 
 
-    private Equipment unwrapPayload(final EquipmentPayload equipmentPayload){
-        Category category = categoryRepository.findByName(equipmentPayload.getCategory()).orElseThrow(() -> new RuntimeException("Category not found."));
+    public Equipment unwrapPayload(final EquipmentPayload equipmentPayload){
+        Category category = categoryRepository.findByName(equipmentPayload.getCategory()).orElseThrow(() -> new CategoryNotFoundException(equipmentPayload.getCategory()));
         Equipment equipment = Equipment.fromPayloadAndCategory(equipmentPayload,category);
         equipment.setServiceCode(generateNewCode());
         return equipment;

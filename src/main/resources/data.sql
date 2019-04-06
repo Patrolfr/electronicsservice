@@ -14,27 +14,27 @@ insert into equipments (category_id, name, service_code, service_status, id) val
 insert into equipments (category_id, name, service_code, service_status, id) values (2, 'lg plasma 2701', 'TVW-532','WORKING', 1007);
 insert into equipments (category_id, name, service_code, service_status, id) values (2, 'stary kineskop', 'TVg-909','IN_SERVICE', 1008);
 
-insert into parameters values(1,'headphones','yes');
-insert into parameters values(2,'resolution','1920x1080');
-insert into parameters values(3,'inchees','27');
-insert into parameters values(4,'inchees','55');
-insert into parameters values(5,'headphones','no');
-insert into parameters values(6,'color','black');
-insert into parameters values(7,'color','blue');
-insert into parameters values(8,'color','white');
-insert into parameters values(9,'color','red');
-insert into parameters values(10,'resolution','4k');
+insert into parameters values(51,'headphones','yes');
+insert into parameters values(52,'resolution','1920x1080');
+insert into parameters values(53,'inchees','27');
+insert into parameters values(54,'inchees','55');
+insert into parameters values(55,'headphones','no');
+insert into parameters values(56,'color','black');
+insert into parameters values(57,'color','blue');
+insert into parameters values(58,'color','white');
+insert into parameters values(59,'color','red');
+insert into parameters values(510,'resolution','4k');
 
-insert into equipments_parameters values(1001,1);
-insert into equipments_parameters values(1001,2);
-insert into equipments_parameters values(1001,6);
-insert into equipments_parameters values(1002,5);
-insert into equipments_parameters values(1002,7);
-insert into equipments_parameters values(1003,8);
-insert into equipments_parameters values(1004,9);
-insert into equipments_parameters values(1005,4);
-insert into equipments_parameters values(1006,10);
-insert into equipments_parameters values(1007,3);
+insert into equipments_parameters values(1001,51);
+insert into equipments_parameters values(1001,52);
+insert into equipments_parameters values(1001,56);
+insert into equipments_parameters values(1002,55);
+insert into equipments_parameters values(1002,57);
+insert into equipments_parameters values(1003,58);
+insert into equipments_parameters values(1004,59);
+insert into equipments_parameters values(1005,54);
+insert into equipments_parameters values(1006,510);
+insert into equipments_parameters values(1007,53);
 
 -- insert into comments values(1001, 'decent phone');
 -- insert into comments values(1001, 'advertised by RL9');

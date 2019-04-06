@@ -51,6 +51,7 @@ public class Equipment {
         equipment.comments = payload.getComments();
         equipment.serviceStatus = payload.getServiceStatus();
         equipment.parameters = payload.getParameters().entrySet().stream().map(entry -> new Parameter(entry.getKey(), entry.getValue())).collect(Collectors.toList());
+        equipment.serviceStatus = payload.getServiceStatus() == null ? ServiceStatus.UNKNOWN : payload.getServiceStatus();
         return equipment;
     }
 
