@@ -7,7 +7,6 @@
     <groupId>komo.fraczek</groupId>
     <artifactId>servicemodule</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <!--<packaging>pom</packaging>-->
     <packaging>jar</packaging>
 
     <parent>
@@ -104,27 +103,16 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
-
-
-
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>r05</version>
         </dependency>
         <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-jdk8</artifactId>
-            <version>1.2.0.Final</version>
-        </dependency>
-        <dependency>
             <groupId>ru.yandex.qatools.embed</groupId>
             <artifactId>postgresql-embedded</artifactId>
             <version>2.9</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -136,13 +124,7 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
-                <!--<configuration>-->
-                    <!--<argLine>-->
-                        <!--&#45;&#45;illegal-access=permit-->
-                    <!--</argLine>-->
-                <!--</configuration>-->
             </plugin>
-
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>

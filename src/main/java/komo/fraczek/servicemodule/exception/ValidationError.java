@@ -16,7 +16,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 
 @RequiredArgsConstructor
 @Getter
-public class ValidationError {
+class ValidationError {
 
     private LocalDateTime timestamp;
 
@@ -26,7 +26,7 @@ public class ValidationError {
     private final List<String> errors = new ArrayList<>();
 
 
-    public static ValidationError createFromErrors(Errors errors){
+    static ValidationError createFromErrors(Errors errors){
         ValidationError error = new ValidationError("Validation failed. " + errors.getErrorCount() + " error(s).");
         error.timestamp = LocalDateTime.now();
         for (ObjectError err : errors.getAllErrors()) {

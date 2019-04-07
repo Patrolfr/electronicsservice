@@ -7,7 +7,7 @@ import komo.fraczek.servicemodule.domain.Parameter;
 import komo.fraczek.servicemodule.domain.ServiceStatus;
 import komo.fraczek.servicemodule.domain.dto.CommentsPayload;
 import komo.fraczek.servicemodule.domain.dto.EquipmentPayload;
-import komo.fraczek.servicemodule.domain.dto.EquipmentWrapper;
+import komo.fraczek.servicemodule.domain.dto.EquipmentResponse;
 import komo.fraczek.servicemodule.exception.CategoryNotFoundException;
 import komo.fraczek.servicemodule.exception.CodeNotFoundException;
 import komo.fraczek.servicemodule.repository.CategoryRepository;
@@ -68,7 +68,7 @@ public class EquipmentServiceTest {
     void when_fetchAllAndWrap_returns_EquipmentWrappersList(){
         List<Equipment> equipmentListFake = createEquipmentListFake();
         when(equipmentRepositoryMock.findAll()).thenReturn(equipmentListFake);
-        List<EquipmentWrapper> equipmentWrappers = equipmentService.fetchAllAndWrap();
+        List<EquipmentResponse> equipmentWrappers = equipmentService.fetchAllAndWrap();
 
         assertEquals(equipmentWrappers.size(), equipmentListFake.size());
     }
@@ -77,7 +77,7 @@ public class EquipmentServiceTest {
     void when_fetchByCategoryAndWrap_returns_EquipmentWrappersList(){
         List<Equipment> equipmentListFake = createEquipmentListFake();
         when(equipmentRepositoryMock.findAllByCategory_Name(any(String.class))).thenReturn(equipmentListFake);
-        List<EquipmentWrapper> equipmentWrappers = equipmentService.fetchByCategoryAndWrap("fakeCategory");
+        List<EquipmentResponse> equipmentWrappers = equipmentService.fetchByCategoryAndWrap("fakeCategory");
 
         assertEquals(equipmentListFake.size(), equipmentWrappers.size());
     }
@@ -159,8 +159,6 @@ public class EquipmentServiceTest {
     }
 
 
-
-//  Fake generation
 
     private EquipmentPayload createEquipmentPayloadFake(){
         return EquipmentPayload.builder().name("Equipment FakeName")

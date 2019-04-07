@@ -10,8 +10,4 @@ public class CategoryNotFoundException extends RuntimeException {
     @Getter
     private String category;
 
-//    public CodeNotFoundException(String code) {
-//        super();
-//        this.code = code;
-//    }
 }

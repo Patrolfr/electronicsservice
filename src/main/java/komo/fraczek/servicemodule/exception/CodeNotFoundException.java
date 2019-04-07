@@ -11,8 +11,4 @@ public class CodeNotFoundException extends RuntimeException {
     @Getter
     private String code;
 
-//    public CodeNotFoundException(String code) {
-//        super();
-//        this.code = code;
-//    }
 }

@@ -5,7 +5,7 @@ import komo.fraczek.servicemodule.domain.Equipment;
 import komo.fraczek.servicemodule.domain.ServiceStatus;
 import komo.fraczek.servicemodule.domain.dto.CommentsPayload;
 import komo.fraczek.servicemodule.domain.dto.EquipmentPayload;
-import komo.fraczek.servicemodule.domain.dto.EquipmentWrapper;
+import komo.fraczek.servicemodule.domain.dto.EquipmentResponse;
 import komo.fraczek.servicemodule.exception.CategoryNotFoundException;
 import komo.fraczek.servicemodule.exception.CodeNotFoundException;
 import komo.fraczek.servicemodule.repository.CategoryRepository;
@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,16 +42,12 @@ public class EquipmentService {
         equipmentRepository.deleteByServiceCode(code);
     }
 
-    public final List<EquipmentWrapper> fetchAllAndWrap(){
-        List<EquipmentWrapper> equipmentList = equipmentRepository.findAll().stream().map(EquipmentWrapper::wrapEquipment).collect(Collectors.toList());
-
-        return equipmentList;
+    public final List<EquipmentResponse> fetchAllAndWrap(){
+        return equipmentRepository.findAll().stream().map(EquipmentResponse::wrapEquipment).collect(Collectors.toList());
     }
 
-    public final List<EquipmentWrapper> fetchByCategoryAndWrap(final String category){
-        List<EquipmentWrapper> equipmentList = equipmentRepository.findAllByCategory_Name(category).stream().map(EquipmentWrapper::wrapEquipment).collect(Collectors.toList());
-
-        return equipmentList;
+    public final List<EquipmentResponse> fetchByCategoryAndWrap(final String category){
+        return equipmentRepository.findAllByCategory_Name(category).stream().map(EquipmentResponse::wrapEquipment).collect(Collectors.toList());
     }
 
     public final Equipment fetchByCode(final String code){
@@ -72,8 +67,7 @@ public class EquipmentService {
         return equipmentRepository.save(equipment);
     }
 
-
-    public Equipment unwrapPayload(final EquipmentPayload equipmentPayload){
+    public final Equipment unwrapPayload(final EquipmentPayload equipmentPayload){
         Category category = categoryRepository.findByName(equipmentPayload.getCategory()).orElseThrow(() -> new CategoryNotFoundException(equipmentPayload.getCategory()));
         Equipment equipment = Equipment.fromPayloadAndCategory(equipmentPayload,category);
         equipment.setServiceCode(generateNewCode());

@@ -1,4 +1,3 @@
---# use only with create-drop hibernate ddl option
 insert into categories values(1,'phone');
 insert into categories values(2,'tv');
 insert into categories values(3,'pc');
@@ -35,12 +34,4 @@ insert into equipments_parameters values(1004,59);
 insert into equipments_parameters values(1005,54);
 insert into equipments_parameters values(1006,510);
 insert into equipments_parameters values(1007,53);
-
--- insert into comments values(1001, 'decent phone');
--- insert into comments values(1001, 'advertised by RL9');
--- insert into comments values(1002, 'Hasn"t been in service.');
--- insert into comments values(1002, 'Premiered in 2018');
--- insert into comments values(1003, 'Premiered in 2018');
--- insert into comments values(1004, 'Premiered in 2017');
-
 

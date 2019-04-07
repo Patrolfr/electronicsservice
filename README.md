@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.com/Patrolfr/electronicsservice.svg?branch=master)](https://travis-ci.com/Patrolfr/electronicsservice)
 [![Coverage Status](https://coveralls.io/repos/github/Patrolfr/electronicsservice/badge.svg)](https://coveralls.io/github/Patrolfr/electronicsservice)
-
 ### Task
 Zadanie polega na przygotowaniu modułu serwisowania sprzętu elektronicznego.
 ###### Wytyczne:
@@ -43,5 +42,6 @@ authorization = bearer {token}
 Travis: https://travis-ci.com/Patrolfr/electronicsservice
 #### Coverage:
 Coveralls: https://coveralls.io/github/Patrolfr/electronicsservice
-
-
+###### Hints:  
+- Use `start.bash` script to run application.
+- Use `Equipment.postman_collection.json` to check fake stories.

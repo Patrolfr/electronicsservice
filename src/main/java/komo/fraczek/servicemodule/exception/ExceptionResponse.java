@@ -6,7 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Getter
-public class ExceptionResponse {
+class ExceptionResponse {
 
     @CreationTimestamp
     private LocalDateTime timestamp;
@@ -15,8 +15,7 @@ public class ExceptionResponse {
 
     private String details;
 
-
-    public ExceptionResponse(String message,  String details) {
+    ExceptionResponse(String message,  String details) {
         this.timestamp = LocalDateTime.now();
         this.message = message;
         this.details = details;

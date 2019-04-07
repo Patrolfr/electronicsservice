@@ -46,14 +46,12 @@ public class Equipment {
 
 
     public static Equipment fromPayloadAndCategory(EquipmentPayload payload, Category category){
-        Equipment equipment = new Equipment();
-        equipment.category = category;
-        equipment.name = payload.getName();
-        equipment.comments = payload.getComments();
-        equipment.serviceStatus = payload.getServiceStatus();
-        equipment.parameters = payload.getParameters().entrySet().stream().map(entry -> new Parameter(entry.getKey(), entry.getValue())).collect(Collectors.toList());
-        equipment.serviceStatus = payload.getServiceStatus() == null ? ServiceStatus.UNKNOWN : payload.getServiceStatus();
-        return equipment;
+        return Equipment.builder().category(category)
+                            .name(payload.getName())
+                .comments(payload.getComments())
+                .serviceStatus(payload.getServiceStatus())
+                .parameters(payload.getParameters().entrySet().stream().map(entry -> new Parameter(entry.getKey(), entry.getValue())).collect(Collectors.toList()))
+                .serviceStatus(payload.getServiceStatus() == null ? ServiceStatus.UNKNOWN : payload.getServiceStatus()).build();
     }
 
     public void changeStatus(ServiceStatus serviceStatus){

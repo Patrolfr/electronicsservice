@@ -30,11 +30,10 @@ import java.util.Properties;
 import static java.lang.String.format;
 
 
-
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = {CategoryRepository.class})
-@Profile("Test")
+@Profile("test")
 public class DbConfig {
     private static final List<String> DEFAULT_ADDITIONAL_INIT_DB_PARAMS = Arrays
             .asList("--nosync", "--locale=en_US.UTF-8");
@@ -42,7 +41,6 @@ public class DbConfig {
     @Bean
     @DependsOn("postgresProcess")
     public DataSource dataSource(PostgresConfig config) {
-
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("org.postgresql.Driver");
         ds.setUrl(format("jdbc:postgresql://%s:%s/%s", config.net().host(), config.net().port(), config.storage().dbName()));
@@ -53,7 +51,6 @@ public class DbConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-
         LocalContainerEntityManagerFactoryBean lcemfb
                 = new LocalContainerEntityManagerFactoryBean();
         lcemfb.setDataSource(dataSource);
@@ -69,9 +66,7 @@ public class DbConfig {
     @Bean
     public JpaTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-
         transactionManager.setEntityManagerFactory(localContainerEntityManagerFactoryBean.getObject());
-
         return transactionManager;
     }
 
@@ -84,11 +79,9 @@ public class DbConfig {
         Properties ps = new Properties();
         ps.put("hibernate.temp.use_jdbc_metadata_defaults", "false");
         ps.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
-//        ps.put("hibernate.hbm2ddl.auto", "update");
 		ps.put("hibernate.hbm2ddl.auto", "create");
         ps.put("hibernate.connection.characterEncoding", "UTF-8");
         ps.put("hibernate.connection.charSet", "UTF-8");
-
         ps.put(AvailableSettings.FORMAT_SQL, "true");
         ps.put(AvailableSettings.SHOW_SQL, "true");
         return ps;
@@ -97,16 +90,13 @@ public class DbConfig {
 
     @Bean
     public PostgresConfig postgresConfig() throws IOException {
-
         final PostgresConfig postgresConfig = new PostgresConfig(Version.V9_6_8,
                 new AbstractPostgresConfig.Net("localhost", Network.getFreeServerPort()),
                 new AbstractPostgresConfig.Storage("test"),
                 new AbstractPostgresConfig.Timeout(),
                 new AbstractPostgresConfig.Credentials("userTest", "pass")
         );
-
         postgresConfig.getAdditionalInitDbParams().addAll(DEFAULT_ADDITIONAL_INIT_DB_PARAMS);
-
         return postgresConfig;
     }
 
