@@ -6,7 +6,9 @@
 
     <groupId>komo.fraczek</groupId>
     <artifactId>servicemodule</artifactId>
-        <version>1.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
+    <!--<packaging>pom</packaging>-->
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -134,6 +136,11 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
+                <!--<configuration>-->
+                    <!--<argLine>-->
+                        <!--&#45;&#45;illegal-access=permit-->
+                    <!--</argLine>-->
+                <!--</configuration>-->
             </plugin>
 
             <plugin>

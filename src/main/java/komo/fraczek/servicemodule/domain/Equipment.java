@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "equipments")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -23,17 +24,14 @@ public class Equipment {
 
     private String name;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
     @ManyToOne()
     @JsonProperty
     private Category category;
 
-    @Setter
+    @Column(name = "service_code")
     private String serviceCode;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @Getter
-    @Setter
     private List<Parameter> parameters;
 
     @ElementCollection
@@ -43,6 +41,7 @@ public class Equipment {
     private List<String> comments;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "service_status")
     private ServiceStatus serviceStatus;
 
 

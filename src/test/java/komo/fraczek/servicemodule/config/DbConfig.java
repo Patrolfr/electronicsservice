@@ -1,4 +1,4 @@
-package komo.fraczek.servicemodule;
+package komo.fraczek.servicemodule.config;
 
 import de.flapdoodle.embed.process.runtime.Network;
 import komo.fraczek.servicemodule.repository.CategoryRepository;
@@ -34,7 +34,7 @@ import static java.lang.String.format;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = {CategoryRepository.class})
-//@Profile("DaoTest")
+@Profile("Test")
 public class DbConfig {
     private static final List<String> DEFAULT_ADDITIONAL_INIT_DB_PARAMS = Arrays
             .asList("--nosync", "--locale=en_US.UTF-8");
@@ -57,7 +57,7 @@ public class DbConfig {
         LocalContainerEntityManagerFactoryBean lcemfb
                 = new LocalContainerEntityManagerFactoryBean();
         lcemfb.setDataSource(dataSource);
-        lcemfb.setPackagesToScan("io.romeh.postgresembeddeddaotesting.domain", "io.romeh.postgresembeddeddaotesting.dao");
+        lcemfb.setPackagesToScan("komo.fraczek.servicemodule.domain", "komo.fraczek.servicemodule.domain.dto");
         HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
         lcemfb.setJpaVendorAdapter(va);
         lcemfb.setJpaProperties(getHibernateProperties());
@@ -84,8 +84,8 @@ public class DbConfig {
         Properties ps = new Properties();
         ps.put("hibernate.temp.use_jdbc_metadata_defaults", "false");
         ps.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
-        ps.put("hibernate.hbm2ddl.auto", "update");
-//		ps.put("hibernate.hbm2ddl.auto", "create");
+//        ps.put("hibernate.hbm2ddl.auto", "update");
+		ps.put("hibernate.hbm2ddl.auto", "create");
         ps.put("hibernate.connection.characterEncoding", "UTF-8");
         ps.put("hibernate.connection.charSet", "UTF-8");
 
@@ -117,7 +117,5 @@ public class DbConfig {
         PostgresProcess process = exec.start();
         return process;
     }
-
-
 }
 
