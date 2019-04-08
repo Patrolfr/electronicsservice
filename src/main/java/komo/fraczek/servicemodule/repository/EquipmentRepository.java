@@ -12,11 +12,11 @@ import java.util.Optional;
 @Repository
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 
-    Optional<Equipment> findById(Long id);
+//    Optional<Equipment> findById(Long id);
 
     Optional<Equipment> findByServiceCode(String serviceCode);
 
-    List<Equipment> findAllByCategory_Name(String category);
+    List<Equipment> findAllByCategoryName(String category);
 
     @Transactional
     void deleteByServiceCode(String serviceCode);

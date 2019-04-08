@@ -47,7 +47,7 @@ public class EquipmentService {
     }
 
     public final List<EquipmentResponse> fetchByCategoryAndWrap(final String category){
-        return equipmentRepository.findAllByCategory_Name(category).stream().map(EquipmentResponse::wrapEquipment).collect(Collectors.toList());
+        return equipmentRepository.findAllByCategoryName(category).stream().map(EquipmentResponse::wrapEquipment).collect(Collectors.toList());
     }
 
     public final Equipment fetchByCode(final String code){

@@ -76,7 +76,7 @@ public class EquipmentServiceTest {
     @Test
     void when_fetchByCategoryAndWrap_returns_EquipmentWrappersList(){
         List<Equipment> equipmentListFake = createEquipmentListFake();
-        when(equipmentRepositoryMock.findAllByCategory_Name(any(String.class))).thenReturn(equipmentListFake);
+        when(equipmentRepositoryMock.findAllByCategoryName(any(String.class))).thenReturn(equipmentListFake);
         List<EquipmentResponse> equipmentWrappers = equipmentService.fetchByCategoryAndWrap("fakeCategory");
 
         assertEquals(equipmentListFake.size(), equipmentWrappers.size());

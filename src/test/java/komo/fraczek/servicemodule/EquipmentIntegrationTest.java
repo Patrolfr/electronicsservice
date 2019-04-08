@@ -10,6 +10,7 @@ import komo.fraczek.servicemodule.domain.Parameter;
 import komo.fraczek.servicemodule.domain.ServiceStatus;
 import komo.fraczek.servicemodule.repository.CategoryRepository;
 import komo.fraczek.servicemodule.repository.EquipmentRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
@@ -33,6 +34,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Disabled
 @ExtendWith(SpringExtension.class)
 //@WebMvcTest(EquipmentController.class) //FIXME
 @ContextConfiguration(classes = {DbConfig.class, TestSecurityConfiguration.class})
@@ -66,19 +68,7 @@ public class EquipmentIntegrationTest {
         logger.debug(mvcResult.getResponse().getStatus() + "");
     }
 
-    @Test
-    void test_EquipmentRepository(){
-        Equipment equipment = createEquipmentFake("EquipmentFakeName");
-        Equipment save = equipmentRepository.save(equipment);
-        assertEquals(equipment.getName(),save.getName());
-    }
 
-    @Test
-    void test_CategoryRepository(){
-        Category category = createCategoryFake();
-        Category save = categoryRepository.save(category);
-        assertEquals(category.getName(), save.getName());
-    }
 
 
     private String getRequestData(String filename) throws IOException {
@@ -86,17 +76,5 @@ public class EquipmentIntegrationTest {
         return Resources.toString(url, StandardCharsets.UTF_8);
     }
 
-    private Category createCategoryFake(){
-        return new Category(1L,"categoryStringFake");
-    }
 
-    private Equipment createEquipmentFake(String name) {
-        return Equipment.builder().category(createCategoryFake())
-                .parameters(Arrays.asList(new Parameter("keyFake1", "valueFake1")))
-                .name(name)
-                .serviceCode("XXX-123")
-                .serviceStatus(ServiceStatus.WORKING)
-                .comments(Arrays.asList())
-                .build();
-    }
 }
